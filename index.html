@@ -1,523 +1,158 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cosmic AI - Sito Completo</title>
-    <style>
-        /* Stili per il corpo della pagina */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #0b0c10;
-            color: #c5c6c7;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cosmic AI - Sito Completo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: url('sfondo-homepage.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #c5c6c7;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
 
-        /* Stili per l'intestazione e la navigazione */
-        header {
-            background-color: #1f2833;
-            padding: 1rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
+    header {
+      background-color: rgba(31, 40, 51, 0.9);
+      padding: 1rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
 
-        .logo-container {
-            display: flex;
-            align-items: center;
-        }
+    .logo-container {
+      display: flex;
+      align-items: center;
+    }
 
-        .logo {
-            height: 40px;
-            margin-right: 10px;
-        }
+    .logo {
+      height: 50px;
+      width: 50px;
+      border-radius: 50%; /* Rende il logo circolare */
+      object-fit: cover;
+      margin-right: 10px;
+      border: 2px solid #66fcf1;
+    }
 
-        .logo-text {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #66fcf1;
-        }
+    .logo-text {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #66fcf1;
+    }
 
-        /* Stili per il menu di navigazione */
-        nav {
-            display: none;
-            flex-direction: column;
-            width: 100%;
-            background-color: #1f2833;
-            position: absolute;
-            top: 60px; /* Altezza dell'header */
-            left: 0;
-        }
-        
-        nav.active {
-            display: flex;
-        }
+    nav {
+      display: none;
+      flex-direction: column;
+      width: 100%;
+      background-color: #1f2833;
+      position: absolute;
+      top: 60px;
+      left: 0;
+    }
 
-        nav a {
-            color: #c5c6c7;
-            text-decoration: none;
-            padding: 1rem 5%;
-            transition: color 0.3s ease;
-            border-bottom: 1px solid #45a29e;
-        }
-        
-        nav a:hover {
-            color: #66fcf1;
-        }
+    nav.active {
+      display: flex;
+    }
 
-        /* Stili per l'icona del menu (hamburger) */
-        .hamburger {
-            display: block;
-            font-size: 2rem;
-            color: #66fcf1;
-            cursor: pointer;
-        }
+    nav a {
+      color: #c5c6c7;
+      text-decoration: none;
+      padding: 1rem 5%;
+      transition: color 0.3s ease;
+      border-bottom: 1px solid #45a29e;
+    }
 
-        /* Gestione delle "pagine" */
-        .page-content {
-            display: none;
-        }
+    nav a:hover {
+      color: #66fcf1;
+    }
 
-        .page-content.active {
-            display: block;
-        }
+    .hamburger {
+      display: block;
+      font-size: 2rem;
+      color: #66fcf1;
+      cursor: pointer;
+    }
 
-        /* Stili per le sezioni */
-        section {
-            padding: 4rem 5%;
-        }
-        
-        h1, h2, h3, h4 {
-            color: #66fcf1;
-            font-weight: normal;
-            border-bottom: 2px solid #66fcf1;
-            padding-bottom: 0.5rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        h1 { font-size: 2.5rem; }
-        h2 { font-size: 2rem; }
-        h3 { font-size: 1.5rem; border-bottom: none; }
-        
-        .section-title {
-            text-align: center;
-            border-bottom: none;
-            padding-bottom: 0;
-        }
-        
-        .section-subtitle {
-            text-align: center;
-            font-style: italic;
-            color: #45a29e;
-            margin-bottom: 2rem;
-        }
+    /* HERO SECTION CON VIDEO SFONDO */
+    .hero {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: #fff;
+      overflow: hidden;
+    }
 
-        /* Home Page */
-        .hero {
-            background-color: #0b0c10;
-            text-align: center;
-            color: #fff;
-            padding: 6rem 5%;
-        }
+    .hero video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
 
-        .hero h1 {
-            font-size: 3rem;
-            color: #66fcf1;
-            border-bottom: none;
-        }
-        
-        .btn {
-            background-color: #66fcf1;
-            color: #0b0c10;
-            border: none;
-            padding: 1rem 2rem;
-            cursor: pointer;
-            font-size: 1rem;
-            margin-top: 2rem;
-            font-weight: bold;
-            transition: background-color 0.3s ease;
-        }
-        
-        .btn:hover {
-            background-color: #45a29e;
-        }
+    .hero h1 {
+      font-size: 3rem;
+      color: #66fcf1;
+      border-bottom: none;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 1rem 2rem;
+      border-radius: 8px;
+    }
 
-        /* Sezioni a griglia */
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-        
-        .grid-item {
-            background-color: #1f2833;
-            padding: 2rem;
-            text-align: center;
-            border: 1px solid #45a29e;
-        }
-
-        /* Sezione Team */
-        .team-member {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            background-color: #1f2833;
-            padding: 1.5rem;
-            border-radius: 5px;
-            text-align: center;
-        }
-
-        .team-member img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            filter: grayscale(100%);
-            border: 3px solid #66fcf1;
-            margin-bottom: 1rem;
-        }
-
-        /* Sezione Listino prezzi */
-        .price-item {
-            background-color: #1f2833;
-            padding: 2rem;
-            border-radius: 5px;
-            border: 1px solid #45a29e;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        
-        .price-item h4 {
-            color: #fff;
-            margin-top: 0;
-        }
-
-        .price {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #66fcf1;
-            margin-top: 1rem;
-            text-align: right;
-        }
-        
-        .price-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        /* Modulo di contatto */
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            background-color: #1f2833;
-            padding: 2rem;
-            border-radius: 5px;
-        }
-        
-        .contact-form label {
-            color: #66fcf1;
-            font-weight: bold;
-        }
-        
-        .contact-form input, .contact-form textarea {
-            padding: 0.8rem;
-            border: 1px solid #45a29e;
-            background-color: #0b0c10;
-            color: #c5c6c7;
-        }
-        
-        .contact-info {
-            background-color: #1f2833;
-            padding: 2rem;
-            border-radius: 5px;
-            margin-bottom: 2rem;
-            border: 1px solid #45a29e;
-        }
-        
-        .contact-info a {
-            color: #66fcf1;
-            text-decoration: none;
-        }
-        
-        /* Media Query per desktop */
-        @media (min-width: 768px) {
-            nav {
-                display: flex;
-                flex-direction: row;
-                position: static;
-                width: auto;
-            }
-            
-            nav a {
-                border-bottom: none;
-            }
-            
-            .hamburger {
-                display: none;
-            }
-        }
-    </style>
+    /* --- MENU CENTRATO PER DESKTOP --- */
+    @media (min-width: 768px) {
+      header {
+        justify-content: space-between;
+      }
+      nav {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 2rem;
+        position: static;
+        width: 100%;
+      }
+      nav a {
+        border-bottom: none;
+      }
+      .hamburger {
+        display: none;
+      }
+    }
+  </style>
 </head>
 <body>
-
-    <header>
-        <div class="logo-container">
-            <img src="logo.png" alt="Logo Cosmic AI" class="logo">
-            <span class="logo-text">Cosmic AI</span>
-        </div>
-        <nav>
-            <a href="#home">Home</a>
-            <a href="#chi-siamo">Chi siamo</a>
-            <a href="#servizi">Servizi</a>
-            <a href="#team">Team</a>
-            <a href="#listino-prezzi">Listino prezzi</a>
-            <a href="#contatti">Contatti</a>
-            <a href="#prenotazione">Prenotazione online</a>
-        </nav>
-        <div class="hamburger">&#9776;</div>
-    </header>
-
-    <div id="home" class="page-content active">
-        <section class="hero">
-            <h1>Cosmic AI, il futuro dell'informatica</h1>
-            <p>Benvenuto su Cosmic AI, hai mai provato un'intelligenza artificiale moderna ed innovativa? Forse! Ma non come la nostra, che aspetti provala.</p>
-            <button class="btn">Prova ora</button>
-        </section>
-        <section>
-            <div class="grid-container">
-                <div class="grid-item">
-                    <h2 class="section-title">Ampia conoscenza in Informatica</h2>
-                    <p>Cosmic AI è il nostro progetto migliore, pronto a partecipare ad una rivoluzione informatica?</p>
-                </div>
-                <div class="grid-item">
-                    <h2 class="section-title">L'Intelligenza Artificiale</h2>
-                    <p>Lavoriamo tutti i giorni per fornirvi la miglior esperienza possibile.</p>
-                </div>
-                <div class="grid-item">
-                    <h2 class="section-title">Serietà e cordialità</h2>
-                    <p>Il Nostro team è serio e cordiale con chiunque richieda supporto, per qualsiasi dubbio contattaci</p>
-                </div>
-            </div>
-            <div style="margin-top: 2rem; text-align: center;">
-                <p>La nostra Intelligenza Artificiale offre una gamma di esperienze incredibili, provala subito!</p>
-            </div>
-        </section>
+  <header>
+    <div class="logo-container">
+      <img src="logo.png" alt="Logo Cosmic AI" class="logo">
+      <span class="logo-text">Cosmic AI</span>
     </div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Chi Siamo</a>
+      <a href="#">Servizi</a>
+      <a href="#">Contatti</a>
+    </nav>
+  </header>
 
-    <div id="chi-siamo" class="page-content">
-        <section>
-            <h1>Chi siamo</h1>
-            <p>Siamo un team di emergenti nel campo dell'informatica. Ci impegniamo a fornirvi solo il meglio dei nostri servizi!</p>
-            <img src="chi-siamo.png" alt="Immagine di codice" style="width:100%; display:block; margin: 2rem 0;">
-            <h2>Ampia conoscenza in Informatica</h2>
-            <p>Come studenti appassionati e impegnati nel campo dell'intelligenza artificiale e dell'apprendimento automatico, abbiamo fondato CosmicAi con l'obiettivo di offrire soluzioni innovative e all'avanguardia a persone che necessitano di qualcuno con cui parlare come un AI !</p>
-        </section>
-    </div>
-
-    <div id="servizi" class="page-content">
-        <section>
-            <h1>Servizi</h1>
-            <p>"L'analisi dati automatica permette di estrarre informazioni preziose e di prendere decisioni strategiche in modo rapido ed efficiente."</p>
-            <div class="grid-container">
-                <div class="grid-item">
-                    <h3>Vendita corsi informatica</h3>
-                    <p>Vendiamo corsi specializzati di informatica per tutti i campi per chi ha appena iniziato e per chi vuole approfondire il campo informatico</p>
-                </div>
-                <div class="grid-item">
-                    <h3>Intelligenza Artificiale</h3>
-                    <p>Offriamo un'innovativa intelligenza artificiale pronta a soddisfare ogni tua esigenza. E' professionalmente testata e pronta per chattare con te</p>
-                </div>
-                <div class="grid-item">
-                    <h3>Professionalità nel Supporto</h3>
-                    <p>Il nostro team è preparato ad ogni scenario possibile, qualsiasi tua richiesta di supporto sarà risolta tempestivamente!</p>
-                </div>
-                <div class="grid-item">
-                    <h3>Personalizzazione raccomandazioni</h3>
-                    <p>"La personalizzazione delle raccomandazioni è la chiave per offrire un'esperienza unica e soddisfacente ai tuoi clienti."</p>
-                </div>
-                <div class="grid-item">
-                    <h3>Simulazione di scenari</h3>
-                    <p>"La simulazione di scenari è un potente strumento che ci permette di prepararci al meglio per affrontare qualsiasi situazione, anticipando i possibili esiti e adottando le strategie più efficaci."</p>
-                </div>
-                <div class="grid-item">
-                    <h3>Ottimizzazione processi aziendali</h3>
-                    <p>"Attraverso un'efficace ottimizzazione dei processi aziendali, si possono ottenere maggiori risultati con minori risorse e migliorare l'efficienza e la competitività dell'azienda."</p>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <div id="team" class="page-content">
-        <section>
-            <h1>Il nostro team</h1>
-            <p>Il nostro team è composto da esperti nel settore informatico con una forte passione per l'innovazione tecnologica. Siamo un gruppo di professionisti altamente innovativi.</p>
-            <div class="team-grid">
-                <div class="team-member">
-                    <img src="team-gladion.png" alt="C.E.O. GlaDion">
-                    <p style="font-weight:bold;">C.E.O.</p>
-                    <h3>GlaDion</h3>
-                    <p>Cosmic Support Team</p>
-                </div>
-                <div class="team-member">
-                    <img src="team-lucas.png" alt="Direttore tecnico Lucas">
-                    <p style="font-weight:bold;">Direttore tecnico</p>
-                    <h3>Lucas</h3>
-                    <p>Cosmic Support Team</p>
-                </div>
-                 <div class="team-member">
-                    <img src="team-placeholder.png" alt="Responsabile sviluppo software">
-                    <p style="font-weight:bold;">Responsabile sviluppo software</p>
-                    <h3>Nome Cognome</h3>
-                    <p>Cosmic Support Team</p>
-                </div>
-                <div class="team-member">
-                    <img src="team-placeholder.png" alt="Ingegnere del software">
-                    <p style="font-weight:bold;">Ingegnere del software</p>
-                    <h3>Nome Cognome</h3>
-                    <p>Cosmic Support Team</p>
-                </div>
-                <div class="team-member">
-                    <img src="team-placeholder.png" alt="Scienziato dei dati">
-                    <p style="font-weight:bold;">Scienziato dei dati</p>
-                    <h3>Nome Cognome</h3>
-                    <p>Cosmic Support Team</p>
-                </div>
-                <div class="team-member">
-                    <img src="team-placeholder.png" alt="Analista di intelligenza artificiale">
-                    <p style="font-weight:bold;">Analista di intelligenza artificiale</p>
-                    <h3>Nome Cognome</h3>
-                    <p>Cosmic Support Team</p>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <div id="listino-prezzi" class="page-content">
-        <section>
-            <h1>Listino prezzi</h1>
-            <p style="text-align:center;">Il nostro listino prezzi è personalizzato in base alle esigenze dei nostri clienti interessati ad utilizzare i nostri servizi. Offriamo diverse opzioni di abbonamento e pacchetti su misura per garantire la massima efficienza e convenienza.</p>
-            
-            <h2>Piani Base</h2>
-            <div class="price-list">
-                <div class="price-item">
-                    <h4>Software di analisi dei dati basato su intelligenza artificiale</h4>
-                    <p>"Il software di analisi dei dati basato su intelligenza artificiale rivoluziona la gestione delle informazioni, offrendo una prospettiva accurata"</p>
-                    <span class="price">€ 65,00</span>
-                </div>
-                <div class="price-item">
-                    <h4>Piattaforma di apprendimento automatico per lo sviluppo di modelli predittivi</h4>
-                    <p>"La piattaforma di apprendimento automatico è il futuro dell'analisi dei dati, offrendo strumenti avanzati per lo sviluppo di modelli pred"</p>
-                    <span class="price">€ 200</span>
-                </div>
-                <div class="price-item">
-                    <h4>Servizi di consulenza per l'implementazione di intelligenza artificiale nelle aziende</h4>
-                    <p>"I servizi di consulenza per l'implementazione di intelligenza artificiale sono il partner strategico delle aziende che desiderano abbracciare l'innov"</p>
-                    <span class="price">€ 400</span>
-                </div>
-                <div class="price-item">
-                    <h4>Strumenti di riconoscimento vocale e di linguaggio naturale</h4>
-                    <p>"Grazie agli strumenti di riconoscimento vocale e di linguaggio naturale, la comunicazione tra uomo e macchina diventa sempre più fluida e intuitiva,"</p>
-                    <span class="price">€ 600</span>
-                </div>
-                <div class="price-item">
-                    <h4>Sistemi di raccomandazione personalizzati</h4>
-                    <p>"I sistemi di raccomandazione personalizzati sono come una guida su misura che ci accompagna nella scoperta di nuovi contenuti e prodotti, rendendo l'"</p>
-                    <span class="price">€ 65,00</span>
-                </div>
-            </div>
-
-            <h2>Piani Premium</h2>
-            <div class="price-list">
-                <div class="price-item">
-                    <h4>Eius modi</h4>
-                    <p>"Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et vo."</p>
-                    <span class="price">€ 400</span>
-                </div>
-                <div class="price-item">
-                    <h4>Architecto beatae vitae</h4>
-                    <p>"Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosa."</p>
-                    <span class="price">€ 600</span>
-                </div>
-                <div class="price-item">
-                    <h4>Ratione voluptatem sequi nesciunt</h4>
-                    <p>"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque."</p>
-                    <span class="price">€ 600</span>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <div id="contatti" class="page-content">
-        <section>
-            <h1>Contatti</h1>
-            <div style="display: flex; gap: 2rem; flex-wrap: wrap;">
-                <div class="contact-info">
-                    <p style="font-weight: bold; color: #fff;">Benvenuti su CosmicAi, il sito web dedicato all'intelligenza artificiale e all'informatica</p>
-                    <p style="color: #66fcf1; margin-top: 2rem;"><strong>📍</strong> CosmicAi</p>
-                    <p style="color: #66fcf1;"><strong>📧</strong> cosmicai.com@gmail.com</p>
-                    <p style="color: #66fcf1;"><strong>▶️</strong> <a href="https://www.youtube.com/@CosmicAI_ai" style="color:#66fcf1; text-decoration: none;">https://www.youtube.com/@CosmicAI_ai</a></p>
-                </div>
-                <form class="contact-form">
-                    <label for="nome">Nome e cognome</label>
-                    <input type="text" id="nome" name="nome">
-                    <label for="email">E-mail</label>
-                    <input type="email" id="email" name="email">
-                    <label for="messaggio">Messaggio</label>
-                    <textarea id="messaggio" name="messaggio"></textarea>
-                    <button type="submit" class="btn">Invia</button>
-                </form>
-            </div>
-        </section>
-    </div>
-
-    <div id="prenotazione" class="page-content">
-        <section>
-            <h1>Prenotazione online</h1>
-            <p style="text-align: center;">Questa sezione è dedicata alla prenotazione online dei nostri servizi.</p>
-        </section>
-    </div>
-    
-    <script>
-        const hamburger = document.querySelector('.hamburger');
-        const navMenu = document.querySelector('nav');
-        const navLinks = document.querySelectorAll('nav a');
-        const pages = document.querySelectorAll('.page-content');
-        
-        // Funzione per mostrare la pagina corretta
-        function showPage(pageId) {
-            pages.forEach(page => {
-                page.classList.remove('active');
-            });
-            document.getElementById(pageId).classList.add('active');
-        }
-
-        // Gestione del click sul menu a comparsa
-        hamburger.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-        });
-
-        // Gestione della navigazione
-        navLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const pageId = e.target.getAttribute('href').substring(1);
-                showPage(pageId);
-                navMenu.classList.remove('active'); // Nasconde il menu dopo la selezione
-            });
-        });
-
-        // Mostra la pagina iniziale al caricamento
-        document.addEventListener('DOMContentLoaded', () => {
-            showPage('home');
-        });
-    </script>
+  <section class="hero">
+    <video autoplay muted loop>
+      <source src="animazione.mp4" type="video/mp4">
+      Il tuo browser non supporta i video HTML5.
+    </video>
+    <h1>Benvenuto su Cosmic AI</h1>
+  </section>
 </body>
 </html>
